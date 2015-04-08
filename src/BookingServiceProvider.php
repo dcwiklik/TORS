@@ -1,7 +1,7 @@
 <?php
 namespace Booking;
 
-use Booking\Core\Config;
+use Booking\Util\Config;
 use Booking\Core\PlaceFactory;
 use Booking\Core\ReservationFactory;
 use Pimple\ServiceProviderInterface;

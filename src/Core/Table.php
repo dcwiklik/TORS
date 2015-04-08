@@ -1,7 +1,7 @@
 <?php
 namespace App\Classes;
 
-class Table
+class Table extends TableAbstract
 {
 
 }

@@ -1,7 +1,7 @@
 <?php
 namespace App\Classes;
 
-class Seat
+class Seat extends SeatAbstract
 {
 
 }

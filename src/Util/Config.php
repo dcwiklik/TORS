@@ -1,5 +1,5 @@
 <?php
-namespace Booking\Core;
+namespace Booking\Util;
 
 class Config
 {

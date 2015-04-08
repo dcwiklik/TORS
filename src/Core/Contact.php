@@ -1,10 +1,17 @@
 <?php
 namespace Booking\Core;
 
-class Contact
+class Contact extends ContactAbstract
 {
-    private $address;
-    private $phone;
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    public function getAddress()
+    {
+        return $this->address;
+    }
 
     public function setPhone($phone)
     {

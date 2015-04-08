@@ -1,7 +1,7 @@
 <?php
 namespace Booking\Core;
 
-class Restaurant extends Place
+class Restaurant extends RestaurantAbstract
 {
 
 }
