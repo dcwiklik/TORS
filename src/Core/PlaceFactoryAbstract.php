@@ -10,12 +10,18 @@ abstract class PlaceFactoryAbstract
      * @param array $openHours
      * @return Restaurant
      */
-    abstract function createRestaurant($name, array $openHours);
+    abstract public function createRestaurant($name, array $openHours);
 
     /**
      * @param $name
      * @param array $openHours
      * @return Hotel
      */
-    abstract function createHotel($name, array $openHours);
+    abstract public function createHotel($name, array $openHours);
+
+    /**
+     * @param PlaceAbstract $place
+     * @return mixed
+     */
+    abstract protected function prepare(PlaceAbstract $place);
 }

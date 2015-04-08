@@ -7,6 +7,8 @@ ini_set('display_errors', '1');
 
 require 'vendor/autoload.php';
 
+define('APP_ROOT', __DIR__ . DIRECTORY_SEPARATOR);
+
 $app = new App();
 $demo = \Booking\Demo::run($app);
 
@@ -58,7 +60,7 @@ $demo = \Booking\Demo::run($app);
 
                     $reservation = $reservationsIterator->current();
 
-                    echo '<li>' . $reservation->getDate() . '</li>';
+                    echo '<li>' . $reservation->getDatetimeFrom()->format('Y-m-d H:i:s') . '</li>';
 
                     $reservationsIterator->next();
                 }

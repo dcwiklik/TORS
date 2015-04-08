@@ -1,18 +1,42 @@
 <?php
 namespace Booking\Core;
 
-class Reservation
+class Reservation extends ReservationAbstract
 {
-    private $dateFrom;
-
-    public function setDate($date)
+    /**
+     * Set reservation start date
+     * @param \DateTime $date
+     */
+    public function setDatetimeFrom(\DateTime $date)
     {
-        $this->dateFrom = $date;
+        $this->datetimeFrom = $date;
     }
 
-    public function getDate()
+    /**
+     * Get reservation start date
+     * @return mixed
+     */
+    public function getDatetimeFrom()
     {
-        return $this->dateFrom;
+        return $this->datetimeFrom;
+    }
+
+    /**
+     * Set reservation end date
+     * @param \DateTime $date
+     */
+    public function setDatetimeTo(\DateTime $date)
+    {
+        $this->datetimeTo = $date;
+    }
+
+    /**
+     * Get reservation end date
+     * @return mixed
+     */
+    public function getDatetimeTo()
+    {
+        return $this->datetimeTo;
     }
 
     /**

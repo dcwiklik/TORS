@@ -3,17 +3,13 @@ namespace Booking\Core;
 
 use Booking\Util\Collection;
 
-class Place extends PlaceInterface {
+class Place extends PlaceAbstract {
 
     public function __construct()
     {
         $this->hours = new Collection();
         $this->contacts = new Collection();
         $this->reservations = new Collection();
-
-        for ($i=1; $i<=7; $i++) {
-            $this->hours->add(array(), $i);
-        }
     }
 
     /**
@@ -82,49 +78,6 @@ class Place extends PlaceInterface {
     public function getReservations()
     {
         return $this->reservations;
-    }
-
-    //
-
-    public function test()
-    {
-        $data = array();
-
-        $data[] = $this->getName();
-        $data[] = $this->getContacts()->getByKey('default')->getPhone();
-
-        $res = '';
-
-        $iterator = $this->getReservations()->getIterator();
-        $iterator->rewind();
-
-        while( $iterator->valid() ){
-            $res .= '@' . $iterator->current()->getDate() . ' ';
-            $iterator->next();
-        }
-
-        $iterator = $this->getHours()->getIterator();
-        $iterator->rewind();
-
-        $h = '';
-
-        while( $iterator->valid() ){
-
-            $dayIndex = $iterator->key();
-
-            $res .= '#' . $dayIndex . '#';
-            foreach ($iterator->current() as $hours) {
-                $res .= implode('-', $hours);
-            }
-
-            $iterator->next();
-        }
-
-        $data[] = $h;
-
-        $data[] = $res;
-
-        return $data;
     }
 
 }

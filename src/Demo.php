@@ -12,9 +12,13 @@ final class Demo
 {
     private static $configFile = 'config.php';
 
+    /**
+     * @param App $app
+     * @return mixed
+     */
     public static function run(App $app)
     {
-        $app->get('config')->setConfig(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . self::$configFile);
+        $app->get('config')->setConfig(APP_ROOT . self::$configFile);
 
         $contact = new Contact();
         $contact->setPhone('505958845');
@@ -29,11 +33,11 @@ final class Demo
         $h->addContact($contact);
 
         $reservation = $reservationFactory->createReservation();
-        $reservation->setDate(date('Y-m-d H:i:s'));
+        $reservation->setDatetimeFrom(new \DateTime());
         $h->addReservations($reservation);
 
         $reservation = $reservationFactory->createReservation();
-        $reservation->setDate(date('Y-m-d H:i:s'));
+        $reservation->setDatetimeFrom(new \DateTime());
         $h->addReservations($reservation);
 
         $demo = array(
