@@ -34,10 +34,10 @@ class PlaceFactory extends AbstractPlaceFactory
     }
 
     /**
-     * @param PlaceAbstract $place
+     * @param AbstractPlace $place
      * @return void
      */
-    protected function prepare(PlaceAbstract $place)
+    protected function prepare(AbstractPlace $place)
     {
         //add hours array
         $hours = array();

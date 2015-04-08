@@ -29,11 +29,12 @@ final class Demo
     {
         $app->get('config')->setConfig(APP_ROOT . self::$configFile);
 
-        $contact = new Contact();
-        $contact->setPhone('505958845');
-
+        $contactFactory = $app->get('contactFactory');
         $placeFactory = $app->get('placeFactory');
         $reservationFactory = $app->get('reservationFactory');
+
+        $contact = $contactFactory->createContact();
+        $contact->setPhone('505958845');
 
         $r = $placeFactory->createRestaurant('Restaurant', array());
         $r->addContact($contact);

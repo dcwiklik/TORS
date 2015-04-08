@@ -20,8 +20,8 @@ abstract class AbstractPlaceFactory
     abstract public function createHotel($name, array $openHours);
 
     /**
-     * @param PlaceAbstract $place
+     * @param AbstractPlace $place
      * @return mixed
      */
-    abstract protected function prepare(PlaceAbstract $place);
+    abstract protected function prepare(AbstractPlace $place);
 }
