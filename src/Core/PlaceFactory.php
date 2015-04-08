@@ -3,12 +3,12 @@ namespace Booking\Core;
 
 use Booking\Util\Collection;
 
-class PlaceFactory
+class PlaceFactory extends PlaceFactoryAbstract
 {
     /**
      * @return Restaurant
      */
-    public static function createRestaurant($name, array $openHours)
+    function createRestaurant($name, array $openHours)
     {
         $r = new Restaurant();
         $r->setName($name);
@@ -20,7 +20,7 @@ class PlaceFactory
     /**
      * @return Hotel
      */
-    public static function createHotel($name, array $openHours)
+    function createHotel($name, array $openHours)
     {
         $h = new Hotel();
         $h->setName($name);

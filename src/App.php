@@ -2,25 +2,32 @@
 namespace Booking;
 
 use Booking\Core\Config;
-use Pimple\Container;
+use Booking\Core\PlaceFactory;
+use Booking\Core\PlaceFactoryAbstract;
+use Booking\Core\ReservationFactoryAbstract;
+use Booking\Util\Container;
 
 final class App
 {
     /**
      * @var \Pimple\Container
      */
-    private $services;
+    private $container;
 
     public function __construct()
     {
         $pimple = new Container();
 
         $serviceProvider = new BookingServiceProvider();
-        $this->services = $serviceProvider->register($pimple);
+        $this->container = $serviceProvider->register($pimple);
     }
 
-    public function getService($name)
+    /**
+     * @param $key
+     * @return mixed
+     */
+    public function get($key)
     {
-        return $this->services[$name];
+        return $this->container->get($key);
     }
 }

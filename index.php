@@ -12,19 +12,64 @@ $demo = \Booking\Demo::run($app);
 
 ?>
 
-<head><title><?php echo $app->getService('config')->get('title'); ?></title></head>
+<head><title><?php echo $app->get('config')->get('title'); ?></title></head>
 
 <table width="100%">
 <tr>
-    <td>
-        <h2>Hotel</h2>
-        <?php var_dump($demo['hotel']); ?>
-    </td>
 
-    <td>
-        <h2>Restaurant</h2>
-        <?php var_dump($demo['restaurant']); ?>
-    </td>
+    <?php foreach ($demo as $place => $item) { ?>
+
+        <td>
+            <h2><?php echo $place; ?></h2>
+
+            <h4>Parametry</h4>
+            <ul>
+                <li><?php echo $item->getName(); ?></li>
+                <li><?php echo $item->getContact()->getPhone(); ?></li>
+            </ul>
+
+            <h4>Godziny</h4>
+            <ul>
+                <?php
+
+                $hoursIterator = $item->getHours()->getIterator();
+                $hoursIterator->rewind();
+
+                while($hoursIterator->valid()) {
+
+                    $dayHours = $hoursIterator->current();
+
+                    echo '<li>' . $hoursIterator->key() . ' - ' . (count($dayHours) ? implode(', ', $dayHours) : 'Brak') . '</li>';
+
+                    $hoursIterator->next();
+                }
+
+                ?>
+            </ul>
+
+            <h4>Rezerwacje</h4>
+            <ul>
+                <?php
+
+                $reservationsIterator = $item->getReservations()->getIterator();
+                $reservationsIterator->rewind();
+
+                while($reservationsIterator->valid()) {
+
+                    $reservation = $reservationsIterator->current();
+
+                    echo '<li>' . $reservation->getDate() . '</li>';
+
+                    $reservationsIterator->next();
+                }
+
+                ?>
+            </ul>
+
+        </td>
+
+    <?php } ?>
+
 </tr>
 
 </table>

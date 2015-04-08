@@ -1,9 +1,9 @@
 <?php
 namespace Booking\Core;
 
-class ReservationFactory
+class ReservationFactory extends ReservationFactoryAbstract
 {
-    public static function createReservation()
+    public function createReservation()
     {
         return new Reservation();
     }

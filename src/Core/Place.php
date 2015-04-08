@@ -16,6 +16,9 @@ class Place extends PlaceInterface {
         }
     }
 
+    /**
+     * @param array $hours
+     */
     public function setHours(array $hours)
     {
         foreach ($hours as $dayIndex => $hours) {
@@ -23,11 +26,17 @@ class Place extends PlaceInterface {
         }
     }
 
+    /**
+     * @param $name
+     */
     public function setName($name)
     {
         $this->name = $name;
     }
 
+    /**
+     * @return mixed
+     */
     public function getName()
     {
         return $this->name;
@@ -41,9 +50,9 @@ class Place extends PlaceInterface {
         return $this->hours;
     }
 
-    public function addContact($name, Contact $contact)
+    public function addContact(Contact $contact, $key = null)
     {
-        $this->contacts->add($contact, $name);
+        $this->contacts->add($contact, ($key ? $key : count($this->contacts)));
     }
 
     public function addReservations($reservation)
@@ -57,6 +66,14 @@ class Place extends PlaceInterface {
     public function getContacts()
     {
         return $this->contacts;
+    }
+
+    /**
+     * @return Contact
+     */
+    public function getContact($key = 1)
+    {
+        return $this->contacts->getByKey($key);
     }
 
     /**
