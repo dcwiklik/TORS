@@ -1,7 +1,8 @@
 <?php
-namespace App\Classes;
+namespace Booking\Core;
 
-class AbstractSeat
+abstract class AbstractSeat
 {
-
+    abstract public function getId();
+    abstract public function getName();
 }

@@ -1,5 +1,5 @@
 <?php
-namespace App\Classes;
+namespace Booking\Core;
 
 class Seat extends AbstractSeat
 {
