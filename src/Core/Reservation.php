@@ -1,7 +1,7 @@
 <?php
 namespace Booking\Core;
 
-class Reservation extends ReservationAbstract
+class Reservation extends AbstractReservation
 {
     /**
      * Set reservation start date

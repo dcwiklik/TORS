@@ -1,7 +1,7 @@
 <?php
 namespace Booking\Core;
 
-class PlaceSettings extends PlaceSettingsAbstract
+class PlaceSettings extends AbstractPlaceSettings
 {
 
 }

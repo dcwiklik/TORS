@@ -3,7 +3,7 @@ namespace Booking\Core;
 
 use Booking\Util\Collection;
 
-class PlaceFactory extends PlaceFactoryAbstract
+class PlaceFactory extends AbstractPlaceFactory
 {
     /**
      * @return Restaurant

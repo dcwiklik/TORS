@@ -7,13 +7,20 @@ use Booking\Core\PlaceFactoryAbstract;
 use Booking\Core\ReservationFactoryAbstract;
 use Booking\Util\Container;
 
+/**
+ * Class App
+ * @package Booking
+ */
 final class App
 {
     /**
-     * @var \Pimple\Container
+     * @var Booking/Util/Container;
      */
     private $container;
 
+    /**
+     * Create app object
+     */
     public function __construct()
     {
         $pimple = new Container();
@@ -23,6 +30,7 @@ final class App
     }
 
     /**
+     * Get app container service
      * @param $key
      * @return mixed
      */

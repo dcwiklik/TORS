@@ -1,7 +1,7 @@
 <?php
 namespace Booking\Core;
 
-class Contact extends ContactAbstract
+class Contact extends AbstractContact
 {
     public function setAddress($address)
     {

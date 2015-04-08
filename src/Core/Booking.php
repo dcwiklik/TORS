@@ -1,7 +1,7 @@
 <?php
 namespace Booking\Core;
 
-class Booking extends BookingAbstract
+class Booking extends AbstractBooking
 {
 
 }

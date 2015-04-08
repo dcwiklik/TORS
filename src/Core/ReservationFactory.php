@@ -1,7 +1,7 @@
 <?php
 namespace Booking\Core;
 
-class ReservationFactory extends ReservationFactoryAbstract
+class ReservationFactory extends AbstractReservationFactory
 {
     /**
      * @return Reservation

@@ -3,7 +3,7 @@ namespace Booking\Core;
 
 use Booking\Util\Collection;
 
-class Place extends PlaceAbstract {
+class Place extends AbstractPlace {
 
     public function __construct()
     {

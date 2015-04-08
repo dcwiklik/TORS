@@ -8,11 +8,20 @@ use Booking\Core\PlaceFactory;
 use Booking\Core\ReservationFactory;
 use Booking\Core\Restaurant;
 
+/**
+ * Class Demo
+ * @package Booking
+ */
 final class Demo
 {
+    /**
+     * Config filename
+     * @var string
+     */
     private static $configFile = 'config.php';
 
     /**
+     * Run demo
      * @param App $app
      * @return mixed
      */

@@ -1,7 +1,7 @@
 <?php
 namespace App\Classes;
 
-class Floor extends FloorAbstract
+class Floor extends AbstractFloor
 {
 
 }
