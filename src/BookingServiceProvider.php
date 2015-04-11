@@ -2,6 +2,7 @@
 namespace Booking;
 
 use Booking\Util\Config;
+use Booking\Core\ContactFactory;
 use Booking\Core\PlaceFactory;
 use Booking\Core\ReservationFactory;
 use Pimple\Container;
@@ -39,6 +40,10 @@ class BookingServiceProvider implements ServiceProviderInterface
 
         $pimple['reservationFactory'] = function($pimple) {
             return new ReservationFactory();
+        };
+
+        $pimple['contactFactory'] = function($pimple) {
+            return new ContactFactory();
         };
 
     }
