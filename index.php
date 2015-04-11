@@ -14,7 +14,7 @@ $demo = \Booking\Demo::run($app);
 
 ?>
 
-<head><title><?php echo $app->get('config')->get('title'); ?></title></head>
+<head><title><?= $app->get('config')->getParameter('title') . ' ' . $app->get('config')->getParameter('version'); ?></title></head>
 
 <table width="100%">
 <tr>

@@ -15,19 +15,13 @@ use Booking\Core\Restaurant;
 final class Demo
 {
     /**
-     * Config filename
-     * @var string
-     */
-    private static $configFile = 'config.php';
-
-    /**
      * Run demo
      * @param App $app
      * @return mixed
      */
     public static function run(App $app)
     {
-        $app->get('config')->setConfig(APP_ROOT . self::$configFile);
+        $app->get('config')->load(APP_ROOT . 'config.yml');
 
         $contactFactory = $app->get('contactFactory');
         $placeFactory = $app->get('placeFactory');
