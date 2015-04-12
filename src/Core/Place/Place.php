@@ -74,7 +74,7 @@ class Place extends AbstractPlace
     /**
      * @return Contact
      */
-    public function getContact($key = 1)
+    public function getContact($key = 0)
     {
         return $this->contacts->getByKey($key);
     }
