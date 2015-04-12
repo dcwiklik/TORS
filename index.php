@@ -10,7 +10,11 @@ require 'vendor/autoload.php';
 define('APP_ROOT', __DIR__ . DIRECTORY_SEPARATOR);
 
 $app = new App();
-$demo = \Booking\Demo::run($app);
+$data = \Booking\Demo::run($app);
+
+echo \Booking\Demo::renderView('index.html.twig', $data);
+
+die;
 
 ?>
 

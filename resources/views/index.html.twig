@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{{ app.get('config').getParameter('title') }} {{ app.get('config').getParameter('version') }}</title>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <style>
+        body { font-family: 'Source Sans Pro', sans-serif; }
+    </style>
+</head>
+<body>
+
+<table width="100%" border="1">
+    <tr>
+        {% for place in places %}
+            {{ app.get('dumper').dumpPlace(place) | raw }}
+        {% endfor %}
+    </tr>
+
+</table>
+
+</body>
+</html>

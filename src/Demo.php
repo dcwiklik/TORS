@@ -2,11 +2,16 @@
 
 namespace Booking;
 
-use Booking\Core\Contact;
+use Booking\Core\Place\AbstractCinema;
+use Booking\Core\Contact\Contact;
 use Booking\Core\Factory;
-use Booking\Core\PlaceFactory;
-use Booking\Core\ReservationFactory;
-use Booking\Core\Restaurant;
+use Booking\Core\Place\Floor;
+use Booking\Core\Place\Room;
+use Booking\Core\Place\RoomArea;
+use Booking\Core\Place\Seat;
+use Booking\Core\Place\Table;
+use Symfony\Component\Templating\Loader\FilesystemLoader;
+use Symfony\Component\Templating\TemplateNameParser;
 
 /**
  * Class Demo
@@ -14,6 +19,8 @@ use Booking\Core\Restaurant;
  */
 final class Demo
 {
+    private static $app;
+
     /**
      * Run demo
      * @param App $app
@@ -21,6 +28,8 @@ final class Demo
      */
     public static function run(App $app)
     {
+        static::$app = $app;
+
         $app->get('config')->load(APP_ROOT . 'config.yml');
 
         $contactFactory = $app->get('contactFactory');
@@ -28,7 +37,8 @@ final class Demo
         $reservationFactory = $app->get('reservationFactory');
 
         $contact = $contactFactory->createContact();
-        $contact->setPhone('505958845');
+        $contact->set('505958845', Contact::FIELD_PHONE);
+        $contact->set('Kraków', Contact::FIELD_ADDRESS_CITY);
 
         $r = $placeFactory->createRestaurant('Restaurant', array());
         $r->addContact($contact);
@@ -44,12 +54,50 @@ final class Demo
         $reservation->setDatetimeFrom(new \DateTime());
         $h->addReservations($reservation);
 
+        /**
+         * @var AbstractCinema $c
+         */
+        $c = $placeFactory->createCinema('Cinema', array());
+
+        $floor = new Floor('Floor 1');
+        $floor->addRoom(new Room('Room 1 in Floor 1'));
+
+        $room = new Room('Room 2 in Floor 1');
+
+        $ra1 = new RoomArea('Pod oknem');
+        $ra2 = new RoomArea('Przy drzwiach', 'PD');
+
+        $ra1->addSeat(new Seat());
+        $ra1->addSeat(new Seat());
+
+        $t1 = new Table('T1');
+        $ra2->addTable($t1);
+
+        $room->addArea($ra1);
+        $room->addArea($ra2);
+
+        $floor->addRoom($room);
+
+        $c->addFloor($floor);
+
         $demo = array(
-            'restaurant' => $r,
-            'hotel' => $h
+            'places' => array(
+                'restaurant' => $r,
+                'hotel' => $h,
+                'cinema' => $c
+            )
         );
 
+        $demo['app'] = $app;
+
         return $demo;
+    }
+
+    public static function renderView($file, $params)
+    {
+        $twig = static::$app->get('twig');
+
+        return $twig->render($file, $params);
     }
 }
 

@@ -1,2 +1,5 @@
 title: "TORS"
 version: "0.1"
+
+system:
+  templatesDir: resources/views/

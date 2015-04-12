@@ -1,0 +1,76 @@
+<td style="vertical-align: top;">
+    <h2>{{ place.getType() }}</h2>
+
+    <h4>Parametry</h4>
+    <ul>
+        <li>{{ place.getName() }}</li>
+        <li>
+            {{ place.getContact().get('PHONE') }} {{ place.getContact().get('ADDRESS_CITY') }}
+        </li>
+    </ul>
+
+    <h4>Godziny</h4>
+    <ul>
+
+        {% for key, hours in place.getHours().getIterator() %}
+
+            {{ key }} {{ hours | join(',') }}
+
+        {% endfor %}
+
+    </ul>
+
+    <h4>Rezerwacje</h4>
+    <ul>
+
+        {% for reservation in place.getReservations().getIterator() %}
+
+            <li>{{ reservation.getDatetimeFrom().format('Y-m-d H:i:s') }}</li>
+
+        {% endfor %}
+
+    </ul>
+
+    <h4>Pomieszczenia</h4>
+    <ul>
+
+        {% for floor in place.getFloors().getIterator() %}
+
+            <li>
+                Piętro: {{ floor.getName() }}
+
+                <ul>
+                    {% for room in floor.getRooms().getIterator() %}
+                        <li>
+                            Pokój: {{ room.getName() }}
+
+                            <ul>
+                                {% for area in room.getAreas().getIterator() %}
+                                    <li>
+                                        Area: {{ area.getName() }}
+                                        <br />Krzesła area: {{ area.getSeats().getIterator().count() }}
+
+                                        <ul>
+                                            {% for table in area.getTables().getIterator() %}
+                                                <li>
+                                                    Stolik: {{ table.getName() }} ({{ table.getSeats().getIterator().count() }})
+
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+
+                                    </li>
+                                {% endfor %}
+                            </ul>
+
+                        </li>
+                    {% endfor %}
+                </ul>
+
+            </li>
+
+        {% endfor %}
+
+    </ul>
+
+</td>
