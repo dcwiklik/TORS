@@ -10,6 +10,7 @@
         "twig/twig": "2.0.*@dev",
 
         "moontoast/math": "dev-master",
-        "rhumsaa/uuid": "2.8.*@dev"
+        "rhumsaa/uuid": "2.8.*@dev",
+        "symfony/var-dumper": "3.0.*@dev"
     }
 }
