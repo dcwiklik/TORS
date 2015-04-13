@@ -3,3 +3,19 @@ version: "0.1"
 
 system:
   templatesDir: resources/views/
+
+places:
+  place1:
+    type: restaurant
+    name: "Restauracja testowa"
+    openHours: []
+    contacts:
+      contact1:
+        phone: 721527299
+        address_city: Kraków
+
+
+  place2:
+    type: cinema
+    name: "Kino testowe"
+    openHours: []

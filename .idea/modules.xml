@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/tors.iml" filepath="$PROJECT_DIR$/.idea/tors.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/tors.dev.iml" filepath="$PROJECT_DIR$/.idea/tors.dev.iml" />
     </modules>
   </component>
 </project>

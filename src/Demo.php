@@ -32,6 +32,27 @@ final class Demo
 
         $app->get('config')->load(APP_ROOT . 'config.yml');
 
+        $demo = self::demo2($app);
+        $demo['app'] = $app;
+
+        return $demo;
+    }
+
+    public static function renderView($file, $params)
+    {
+        $twig = static::$app->get('twig');
+
+        return $twig->render($file, $params);
+    }
+
+    /**
+     * Demo from method
+     * @param $app
+     * @return array
+     * @throws \Exception
+     */
+    private static function demo1($app)
+    {
         $contactFactory = $app->get('contactFactory');
         $placeFactory = $app->get('placeFactory');
         $reservationFactory = $app->get('reservationFactory');
@@ -88,18 +109,57 @@ final class Demo
             )
         );
 
-        $demo['app'] = $app;
-
         return $demo;
     }
 
-    public static function renderView($file, $params)
+    /**
+     * Demo from config
+     * @param $app
+     * @return array
+     */
+    private static function demo2($app)
     {
-        $twig = static::$app->get('twig');
+        $contactFactory = $app->get('contactFactory');
+        $placeFactory = $app->get('placeFactory');
+        $reservationFactory = $app->get('reservationFactory');
 
-        return $twig->render($file, $params);
+        $places = $app->get('config')->getParameter('places');
+        $placesObjects = [];
+
+        foreach ($places as $place) {
+
+            switch ($place['type']) {
+                case 'restaurant':
+                    $placeObject = $placeFactory->createRestaurant($place['name'], $place['openHours']);
+                    break;
+
+                case 'cinema':
+                    $placeObject = $placeFactory->createCinema($place['name'], $place['openHours']);
+                    break;
+
+                case 'hotel':
+                    $placeObject = $placeFactory->createHotel($place['name'], $place['openHours']);
+                    break;
+            }
+
+            //contact
+            if (isset($place['contacts']) && is_array($place['contacts']))
+            foreach ($place['contacts'] as $contact) {
+                $contactObject = $contactFactory->createContact();
+
+                $contactObject->set($contact['phone'], Contact::FIELD_PHONE);
+                $contactObject->set($contact['address_city'], Contact::FIELD_ADDRESS_CITY);
+
+                $placeObject->addContact($contactObject);
+            }
+
+            $placesObjects[] = $placeObject;
+        }
+
+        return array(
+            'places' => $placesObjects
+        );
     }
 }
 
 ?>
-
