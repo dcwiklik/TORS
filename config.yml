@@ -13,9 +13,40 @@ places:
       contact1:
         phone: 721527299
         address_city: Kraków
-
+    structure:
+      floor1:
+        name: "Piętro 1"
+        rooms:
+          room1:
+            name: "Sala 1"
+            areas:
+              area1:
+                name: "Area 1"
+                tables:
+                  table1:
+                    name: "Stolik 1"
+                    seats: 5
+              area2:
+                name: "Area 2"
+                tables: false
+                seats: 5
 
   place2:
     type: cinema
     name: "Kino testowe"
     openHours: []
+    structure:
+          floor1:
+            name: "II piętro"
+            rooms:
+              room1:
+                name: "Sala niebieska"
+                areas:
+                  area1:
+                    name: "Rząd 1"
+                    tables: false
+                    seats: 10
+                  area2:
+                    name: "Rząd 2"
+                    tables: false
+                    seats: 10

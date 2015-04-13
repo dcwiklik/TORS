@@ -5,13 +5,16 @@ namespace Booking;
 use Booking\Core\Place\AbstractCinema;
 use Booking\Core\Contact\Contact;
 use Booking\Core\Factory;
+use Booking\Core\Place\AbstractPlace;
 use Booking\Core\Place\Floor;
+use Booking\Core\Place\Place;
 use Booking\Core\Place\Room;
 use Booking\Core\Place\RoomArea;
 use Booking\Core\Place\Seat;
 use Booking\Core\Place\Table;
 use Symfony\Component\Templating\Loader\FilesystemLoader;
 use Symfony\Component\Templating\TemplateNameParser;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * Class Demo
@@ -144,13 +147,105 @@ final class Demo
 
             //contact
             if (isset($place['contacts']) && is_array($place['contacts']))
-            foreach ($place['contacts'] as $contact) {
+
+                foreach ($place['contacts'] as $contact) {
                 $contactObject = $contactFactory->createContact();
 
                 $contactObject->set($contact['phone'], Contact::FIELD_PHONE);
                 $contactObject->set($contact['address_city'], Contact::FIELD_ADDRESS_CITY);
 
                 $placeObject->addContact($contactObject);
+            }
+
+            $a = array(
+                'floor1' => array(
+                    'name' => 'Piętro 1',
+                    'rooms' => array(
+                        'room1' => array(
+                            'name' => 'Sala 1',
+                            'areas' => array(
+                                'area1' => array(
+                                    'name' => 'Area 1',
+                                    'tables' => array(
+                                        'table1' => array(
+                                            'name' => 'Stolik 1',
+                                            'seats' => 5
+                                        )
+                                    )
+                                ),
+
+                                'area2' => array(
+                                    'name' => 'Area 2',
+                                    'tables' => false,
+                                    'seats' => array(
+                                        'table1' => array(
+                                            'name' => 'Stolik 1',
+                                            'seats' => 5
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+
+//            echo serialize($a);
+//
+//            //var_dump($a);
+//            die;
+
+            //structure
+            if (isset($place['structure']) && is_array($place['structure'])) {
+
+//                VarDumper::dump($place['structure']);
+//                die;
+
+                /**
+                 * @var Place $placeObject
+                 */
+
+                foreach ($place['structure'] as $floor) {
+                    $f = new Floor($floor['name']);
+
+                    foreach ($floor['rooms'] as $room) {
+
+                        $r = new Room($room['name']);
+
+                        foreach ($room['areas'] as $area) {
+
+                            $a = new RoomArea($area['name']);
+
+                            if (isset($area['tables']) && is_array($area['tables'])) {
+
+                                foreach ($area['tables'] as $table) {
+
+                                    $t = new Table($table['name']);
+
+                                    for ($i=0; $i<intval($table['seats']); $i++) {
+                                        $t->addSeat(new Seat());
+                                    }
+
+                                    $a->addTable($t);
+                                }
+
+                            } elseif (isset($area['seats']) && $area['seats']) {
+
+                                for ($i=0; $i<intval($area['seats']); $i++) {
+                                    $a->addSeat(new Seat());
+                                }
+                            }
+
+                            $r->addArea($a);
+                        }
+
+                        $f->addRoom($r);
+                    }
+
+
+                    $placeObject->addFloor($f);
+                }
+
             }
 
             $placesObjects[] = $placeObject;

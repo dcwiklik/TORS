@@ -47,7 +47,7 @@
                             <ul>
                                 {% for area in room.getAreas().getIterator() %}
                                     <li>
-                                        Area: {{ area.getName() }}
+                                        Area: {{ area.getName() }} ({% if area.isTablesMode() %}T mode{% else %}A mode{% endif %})
                                         <br />Krzesła area: {{ area.getSeats().getIterator().count() }}
 
                                         <ul>
