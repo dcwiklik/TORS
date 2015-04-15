@@ -9,12 +9,20 @@
         </li>
     </ul>
 
-    <h4>Godziny</h4>
+    <h4>Godziny otwarcia (możliwość rezerwacji)</h4>
     <ul>
 
         {% for key, hours in place.getHours().getIterator() %}
 
-            {{ key }} {{ hours | join(',') }}
+            <div>
+                Dzień tygodnia {{ key }}:
+
+                {% if hours|length == 0 %}zamknięte{% endif %}
+
+                {% for hour in hours %}
+                    {{ hour | join(' - ') }}
+                {% endfor %}
+            </div>
 
         {% endfor %}
 

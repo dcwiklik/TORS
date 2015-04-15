@@ -8,7 +8,18 @@ places:
   place1:
     type: restaurant
     name: "Restauracja testowa"
-    openHours: []
+    openHours:
+      1:
+        - ["8:00", "10:00"]
+        - ["15:00", "19:00"]
+      2:
+        - ["8:00", "20:00"]
+      3:
+        - ["8:00", "20:00"]
+      4:
+        - ["8:00", "20:00"]
+      5:
+        - ["8:00", "20:00"]
     contacts:
       contact1:
         phone: 721527299
