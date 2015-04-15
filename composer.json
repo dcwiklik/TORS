@@ -11,6 +11,8 @@
 
         "moontoast/math": "dev-master",
         "rhumsaa/uuid": "2.8.*@dev",
-        "symfony/var-dumper": "3.0.*@dev"
+        "symfony/var-dumper": "3.0.*@dev",
+
+        "fzaninotto/faker": "1.5.*@dev"
     }
 }
